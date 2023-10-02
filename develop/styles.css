@@ -6,13 +6,14 @@ body {
     padding: 0;
 }
 .padding {
-    padding: 5%;
+    padding: 15px;
 }
 
 h1 {
     color: #E87A00;
     font-size: 50px;
     font-family: 'pixelify Sans', 'Times New Roman', serif;
+    text-align: center;
 }
 
 .container {
@@ -25,13 +26,26 @@ h1 {
 }
 
 .quiz-container {
-    width: 70%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
 }
 
 .questions {
     color: #D89C60;
+    font-size: 25px;
 }
 
 .answerButton {
-    color:#E87A00;
+   color: #001F3D;
+   width: 100%;
+   border: 1px solid #E87A00;
+   border-radius: 5px;
+   margin: 10px auto;
+}
+
+.answerButton:hover {
+    background: linear-gradient(0.25turn,#E87A00, #fff);
 }
