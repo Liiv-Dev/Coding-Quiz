@@ -1,17 +1,37 @@
 body {
-    background-image: linear-gradient(to bottom right, white, black);
+    background-image: linear-gradient(to bottom right, #045174, 
+    black);
     color: white;
-    margin: 0 auto;
-    margin-top: 25%;
-    text-align: center;
-    margin: 0
+    margin: 0;
+    padding: 0;
+}
+.padding {
+    padding: 5%;
+}
+
+h1 {
+    color: #E87A00;
+    font-size: 50px;
+    font-family: 'pixelify Sans', 'Times New Roman', serif;
+}
+
+.container {
+    border: 1px solid #fff;
+    border-radius: 10px;
+    box-shadow: 1px 1px 10px #fff;
+    width: 80%;
+    margin: 150px auto;
+    padding: 25px;
 }
 
 .quiz-container {
-    border: 1px solid white; 
-    border-radius: 20px;
-    box-shadow: 10px ;
-    width: 50%;
-    height: 50%;
+    width: 70%;
 }
 
+.questions {
+    color: #D89C60;
+}
+
+.answerButton {
+    color:#E87A00;
+}
