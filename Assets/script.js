@@ -3,7 +3,6 @@ let questionElement = document.getElementById("question");
 let answerButton = document.querySelector(".answer-links");
 let nextButton = document.getElementById("next-btn");
 let startButton = document.querySelector("#start-btn")
-let questionBtn = document.getElementsByClassName(".btn")
 let timeElement = document.querySelector(".timer")
 
 //Varible set to hold questions and answers for game
@@ -22,36 +21,36 @@ let questions = [
     ]
  }, {
     //qustion2
-    question: "Who plays Jack Dawson in Titanic (1998)?",
+    question: "Who is Ghostface in the first Scream Movie?",
 
     //Holds answers for question
     answers: [
         {text: "Tom Cruise", correct: false},
-        {text: "Leonardo DiCaprio", correct: true},
-        {text: "Tom Hanks", correct: false},
-        {text: "George Clooney", correct: false}
+        {text: "Stu Mache", correct: false},
+        {text: "Gale Weathers", correct: false},
+        {text: "Billy Loomis", correct: true}
     ]
  }, {
-    //qustion2
-    question: "Who plays Jack Dawson in Titanic (1999)?",
+    //qustion3
+    question: "What movie is premiering in the theaters during the opening scene of Scream 2?",
 
     //Holds answers for question
     answers: [
-        {text: "Tom Cruise", correct: false},
-        {text: "Leonardo DiCaprio", correct: true},
-        {text: "Tom Hanks", correct: false},
-        {text: "George Clooney", correct: false}
+        {text: "Ring", correct: false},
+        {text: "Texas Chainsaw", correct: false},
+        {text: "Stab", correct: true},
+        {text: "Halloween", correct: false}
     ]
  }, {
-    //qustion2
-    question: "Who plays Jack Dawson in Titanic (2000)?",
+    //qustion4
+    question: "Which one of the Legacy Characters dies in the Scream 5?",
 
     //Holds answers for question
     answers: [
-        {text: "Tom Cruise", correct: false},
-        {text: "Leonardo DiCaprio", correct: true},
-        {text: "Tom Hanks", correct: false},
-        {text: "George Clooney", correct: false}
+        {text: "Dewey", correct: true},
+        {text: "Sydney", correct: false},
+        {text: "Gale", correct: false},
+        {text: "Neither", correct: false}
     ]
  }
 ]
@@ -61,7 +60,16 @@ let score = 0;
 let timer;
 let timeLeft = 60;
 
+
+//event listeners. startButton starts game, nextButton moves to next question
   startButton.addEventListener('click', startGame);
+  nextButton.addEventListener("click", () => {
+    if (currentQuestionIndex < questions.length) {
+        nextQuestion();
+    } else {
+        startGame();
+    }
+  });
 
 
 //Starting point for questions after clicking start button
@@ -74,7 +82,19 @@ function startGame() {
     displayQuestion()
 }
 
+//Sets timer at start of start
+function quizTimer() {
+    if (timeLeft > 0) {
+        timeLeft--;
+        timeElement.textContent = `Time: ${timeLeft}s`;
+    } else {
+        endGame()
+    }
+}
+
+//Displays questions and answers from array 
 function displayQuestion() {
+    reset();
     let currentQuestion = questions[currentQuestionIndex];
     questionElement.innerHTML = currentQuestion.question; 
 
@@ -86,22 +106,18 @@ function displayQuestion() {
         if (answer.correct){
             button.dataset.correct = answer.correct;
         }
+
+        //event listener checks if clicked answers are correct or false
         button.addEventListener("click", checkAnswer)
     });
 }
 
-function quizTimer() {
-    if (timeLeft > 0) {
-        timeLeft--;
-        timeElement.textContent = `Time: ${timeLeft}s`;
-    } else {
-        endGame()
-    }
-}
+//function checks if answers are correct or false, increases score if correct answer is correct, highlights answers
 function checkAnswer(e) {
     let selectedBtn = e.target;
     let isCorrect = selectedBtn.dataset.correct === "true";if (isCorrect) {
         selectedBtn.classList.add("correct");
+        score++
     } else {
         selectedBtn.classList.add("wrong");
     }
@@ -113,3 +129,20 @@ function checkAnswer(e) {
     })
     nextButton.style.display = "block"
 }   
+
+function nextQuestion() {
+    currentQuestionIndex++
+    if(currentQuestionIndex < questions.length) {
+        displayQuestion()
+    } else {
+        showTotal()
+    }
+}
+
+function reset() {
+    nextButton.style.display = "none";
+    while (answerButton.firstChild) {
+        answerButton.removeChild(answerButton.firstChild)
+    }
+
+}

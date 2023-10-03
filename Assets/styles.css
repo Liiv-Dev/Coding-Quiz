@@ -27,6 +27,7 @@ button {
     border: 1px solid #E87A00;
     border-radius: 10px;
     width: 25%;
+    font-size: 20px;
 }
 
 .score {
@@ -93,11 +94,12 @@ h1 {
 
 .nextButton {
     display: block;
+    font-size: 20px;
     background: linear-gradient(0.25turn,#E87A00, #fff);
     color: #001F3D;
     border: 1px solid #E87A00;
     border-radius: 10px;
-    margin: 10px auto;
+    margin: 20px auto;
 }
 
 .hidden {
