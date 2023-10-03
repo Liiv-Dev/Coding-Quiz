@@ -56,7 +56,7 @@ let questions = [
 ]
 
 let currentQuestionIndex = 0;
-let score = 0;
+let score;
 let timer;
 let timeLeft = 60;
 
@@ -88,7 +88,8 @@ function quizTimer() {
         timeLeft--;
         timeElement.textContent = `Time: ${timeLeft}s`;
     } else {
-        endGame()
+        reset()
+        startGame()
     }
 }
 
@@ -113,8 +114,8 @@ function displayQuestion() {
 }
 
 //function checks if answers are correct or false, increases score if correct answer is correct, highlights answers
-function checkAnswer(e) {
-    let selectedBtn = e.target;
+function checkAnswer(selectedAnswer) {
+    let selectedBtn = selectedAnswer.target;
     let isCorrect = selectedBtn.dataset.correct === "true";if (isCorrect) {
         selectedBtn.classList.add("correct");
         score++
@@ -130,19 +131,29 @@ function checkAnswer(e) {
     nextButton.style.display = "block"
 }   
 
+//displays next question in array of questions
 function nextQuestion() {
-    currentQuestionIndex++
+    currentQuestionIndex++;
     if(currentQuestionIndex < questions.length) {
         displayQuestion()
     } else {
-        showTotal()
+        showScore()
     }
+}
+
+//function keeps score
+function showScore() {
+    reset();
+    questionElement.innerHTML = `You scored ${score}/4`;
+    nextButton.style.display = 'block'
+    nextButton.innerHTML = "Play Again"
 }
 
 function reset() {
     nextButton.style.display = "none";
     while (answerButton.firstChild) {
-        answerButton.removeChild(answerButton.firstChild)
+    answerButton.removeChild(answerButton.firstChild)
     }
-
 }
+
+
