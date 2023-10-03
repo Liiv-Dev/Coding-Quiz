@@ -89,7 +89,7 @@ function displayQuestion() {
 function quizTimer() {
     if (timeLeft > 0) {
         timeLeft--;
-        timeElement.textContent = "Time: " + timeLeft + "s";
+        timeElement.textContent =`Time: ${timeLeft}s`;
     } else {
         endGame()
     }
