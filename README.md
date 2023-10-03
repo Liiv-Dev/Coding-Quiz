@@ -1,13 +1,14 @@
-# Coding-Quiz
+# Coding Quiz
 
-GIVEN I am taking a code quiz
-WHEN I click the start button
-THEN a timer starts and I am presented with a question
-WHEN I answer a question
-THEN I am presented with another question
-WHEN I answer a question incorrectly
-THEN time is subtracted from the clock
-WHEN all questions are answered or the timer reaches 0
-THEN the game is over
-WHEN the game is over
-THEN I can save my initials and score
+## About
+
+
+Quiz project created for JS practice and to give users something to do when they're bored.
+
+## Getting Started
+
+Hit start and answer questions before the time runs out. Score is reported after the last question and Page reloads when the time ends.
+
+### Prerequisites
+
+### Installation

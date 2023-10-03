@@ -88,8 +88,7 @@ function quizTimer() {
         timeLeft--;
         timeElement.textContent = `Time: ${timeLeft}s`;
     } else {
-        reset()
-        startGame()
+        location.reload()
     }
 }
 
