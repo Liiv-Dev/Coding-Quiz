@@ -103,3 +103,11 @@ h1 {
 .hidden {
     display: none;
 }
+
+.correct {
+    background: linear-gradient(0.25turn,#E87A00, #00FF00);
+}
+
+.wrong {
+    background: linear-gradient(0.25turn,#E87A00, red);
+}

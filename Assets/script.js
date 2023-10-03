@@ -83,14 +83,33 @@ function displayQuestion() {
         button.innerHTML = answer.text;
         button.classList.add("btn");
         answerButton.appendChild(button);
+        if (answer.correct){
+            button.dataset.correct = answer.correct;
+        }
+        button.addEventListener("click", checkAnswer)
     });
 }
 
 function quizTimer() {
     if (timeLeft > 0) {
         timeLeft--;
-        timeElement.textContent =`Time: ${timeLeft}s`;
+        timeElement.textContent = `Time: ${timeLeft}s`;
     } else {
         endGame()
     }
 }
+function checkAnswer(e) {
+    let selectedBtn = e.target;
+    let isCorrect = selectedBtn.dataset.correct === "true";if (isCorrect) {
+        selectedBtn.classList.add("correct");
+    } else {
+        selectedBtn.classList.add("wrong");
+    }
+    Array.from(answerButton.children).forEach(button => {
+        if (button.dataset.correct === "true"){
+            button.classList.add("correct")
+        }
+        button.disabled = true;
+    })
+    nextButton.style.display = "block"
+}   
