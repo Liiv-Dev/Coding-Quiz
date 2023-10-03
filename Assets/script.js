@@ -1,7 +1,10 @@
+let quizDisplay = document.querySelector(".quiz-container")
 let questionElement = document.getElementById("question");
-let answerBtnElement = document.querySelector(".answer-links");
-let nextBtnElement = document.getElementById("next-btn");
-let startBtn = document.querySelector("#start-btn")
+let answerButton = document.querySelector(".answer-links");
+let nextButton = document.getElementById("next-btn");
+let startButton = document.querySelector("#start-btn")
+let questionBtn = document.getElementsByClassName(".btn")
+let timeElement = document.querySelector(".timer")
 
 //Varible set to hold questions and answers for game
 let questions = [
@@ -55,24 +58,19 @@ let questions = [
 
 let currentQuestionIndex = 0;
 let score = 0;
+let timer;
+let timeLeft = 60;
 
-/*
-function hideButton() {
-    document.getElementById('start-btn').style.display = 'block'; 
-    this.style.display = 'none'
-}
+  startButton.addEventListener('click', startGame);
 
-startBtn.addEventListener("click", () => {
-    hideButton();
-    beginQuiz();
-  });
-  */
 
 //Starting point for questions after clicking start button
-function beginQuiz() {
+function startGame() {
     currentQuestionIndex = 0;
     score = 0;
-
+    timer = setInterval(quizTimer, 1000)
+    startButton.style.display = 'none';
+    quizDisplay.style.display = 'block';
     displayQuestion()
 }
 
@@ -84,8 +82,15 @@ function displayQuestion() {
         let button = document.createElement("button");
         button.innerHTML = answer.text;
         button.classList.add("btn");
-        answerBtnElement.appendChild(button);
+        answerButton.appendChild(button);
     });
 }
 
-beginQuiz();
+function quizTimer() {
+    if (timeLeft > 0) {
+        timeLeft--;
+        timeElement.textContent = "Time: " + timeLeft + "s";
+    } else {
+        endGame()
+    }
+}
