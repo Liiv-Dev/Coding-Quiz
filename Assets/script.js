@@ -115,11 +115,12 @@ function displayQuestion() {
 //function checks if answers are correct or false, increases score if correct answer is correct, highlights answers
 function checkAnswer(selectedAnswer) {
     let selectedBtn = selectedAnswer.target;
-    let isCorrect = selectedBtn.dataset.correct === "true";if (isCorrect) {
+    let isCorrect = selectedBtn.dataset.correct === "true"; if (isCorrect) {
         selectedBtn.classList.add("correct");
         score++
     } else {
         selectedBtn.classList.add("wrong");
+        timeLeft-=25;
     }
     Array.from(answerButton.children).forEach(button => {
         if (button.dataset.correct === "true"){
@@ -143,11 +144,12 @@ function nextQuestion() {
 //function keeps score
 function showScore() {
     reset();
-    questionElement.innerHTML = `You scored ${score}/4`;
+    questionElement.innerHTML = `Thanks for playing! You scored ${score} point(s)!`;
     nextButton.style.display = 'block'
     nextButton.innerHTML = "Play Again"
 }
 
+//This function removes prior answers and displays new selection of answers
 function reset() {
     nextButton.style.display = "none";
     while (answerButton.firstChild) {
