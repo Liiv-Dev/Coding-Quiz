@@ -2,8 +2,10 @@ let quizDisplay = document.querySelector(".quiz-container")
 let questionElement = document.getElementById("question");
 let answerButton = document.querySelector(".answer-links");
 let nextButton = document.getElementById("next-btn");
-let startButton = document.querySelector("#start-btn")
-let timeElement = document.querySelector(".timer")
+let startButton = document.querySelector("#start-btn");
+let timeElement = document.querySelector(".timer");
+let formElement = document.querySelector("#form");
+let submitbtn = document.querySelector("#submit-btn");
 
 //Varible set to hold questions and answers for game
 let questions = [
@@ -79,6 +81,7 @@ function startGame() {
     timer = setInterval(quizTimer, 1000)
     startButton.style.display = 'none';
     quizDisplay.style.display = 'block';
+    formElement.style.display = 'none';
     displayQuestion()
 }
 
